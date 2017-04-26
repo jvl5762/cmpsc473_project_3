@@ -66,7 +66,7 @@ unsigned long long memoryManager::memoryAccess(unsigned long long address)
 }
 
 // intialize virutal memory map
-void myVirtualMemoryManagerInterface::initializeMemoryMap(unsigned int virutalMemorySize)
+void memoryManager::initializeMemoryMap(unsigned int virutalMemorySize)
 {
 	MemoryMap initFrame;
 
