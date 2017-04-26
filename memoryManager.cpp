@@ -57,6 +57,7 @@ unsigned long long memoryManager::memoryAccess(unsigned long long address)
 	}
 
 	// swap
+	// remove these two lines before submission
 	frames[lowest].page = address;
 	frames[lowest].time = timer;
 
