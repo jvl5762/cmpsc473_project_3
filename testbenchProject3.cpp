@@ -6,12 +6,12 @@
 //  Author         : Jeff Li, Frank Guo, Chen Dikan
 //  Last Modified  : 04/28/2017
 
-#include "myVirtualMemoryManagerInterface.h"
+#include "memoryManager.h"
 
 int main() 
 {
-	myVirtualMemoryManagerInterface test_FIFO(FIFO, 2, 2, 4);
-	myVirtualMemoryManagerInterface test_LRU(LRU, 2, 2, 4);
+	memoryManager test_FIFO(FIFO, 2, 2, 4);
+	memoryManager test_LRU(LRU, 2, 2, 4);
 
 	// FIFO example on the slides 
 //	test_FIFO.memoryAccess(0);	
