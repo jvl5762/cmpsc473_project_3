@@ -6,7 +6,7 @@
 # Locations
 
 # Make environment
-OBJS = myVirtualMemoryManagerInterface.o testbenchProject3.o
+OBJS = memoryManager.o testbenchProject3.o
 CXX = g++ 
 CXXFLAGS = -std=c++11 -c -g -Wall
 LFLAGS = -std=c++11 -Wall -g
@@ -17,11 +17,11 @@ all : testbenchProject3
 testbenchProject3 : $(OBJS)
 	$(CXX) $(LFLAGS) $(OBJS) -o testbenchProject3
 
-testbenchProject3.o : virtualMemoryManagerInterface.hpp myVirtualMemoryManagerInterface.h testbenchProject3.cpp
+testbenchProject3.o : virtualMemoryManagerInterface.hpp memoryManager.h testbenchProject3.cpp
 	$(CXX) $(CXXFLAGS) testbenchProject3.cpp
 
-myVirtualMemoryManagerInterface.o : virtualMemoryManagerInterface.hpp myVirtualMemoryManagerInterface.h myVirtualMemoryManagerInterface.cpp
-	$(CXX) $(CXXFLAGS) myVirtualMemoryManagerInterface.cpp
+memoryManager.o : virtualMemoryManagerInterface.hpp memoryManager.h memoryManager.cpp
+	$(CXX) $(CXXFLAGS) memoryManager.cpp
 
 clean : 
 	rm -f testbenchProject3 $(OBJS)
