@@ -10,8 +10,8 @@
 
 int main() 
 {
-	memoryManager test_FIFO(FIFO, 2, 2, 4);
-	memoryManager test_LRU(LRU, 2, 2, 4);
+	memoryManager test_FIFO(FIFO, 1, 4, 4);
+	memoryManager test_LRU(LRU, 1, 4, 4);
 
 	// FIFO example on the slides 
 //	test_FIFO.memoryAccess(0);	
