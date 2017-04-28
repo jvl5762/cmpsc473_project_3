@@ -16,23 +16,22 @@ int timer = 0;
 unsigned long long memoryManager::memoryAccess(unsigned long long address)
 {
 	// local variables
-	unsigned int virutalMemorySize = pow(2,N); // max size of memory map
 	int lowest, lowestTime;	// tracks the frames that will be swapped 
 
 	timer++;
 
-	if(frames.size() < virutalMemorySize) { initializeMemoryMap(virutalMemorySize); }
+	if(frames.size() < numFrames) { initializeMemoryMap(); }
 
 	lowest = 0;
 	lowestTime = frames[0].time;
 
 	// display contents of memory map -- remove before submission
-	for(unsigned int i = 0; i < virutalMemorySize; i++) {
+	for(unsigned int i = 0; i < numFrames; i++) {
 		printf("%d ", frames[i].page);
 	}
 	printf("\n");
 
-	for(unsigned int i = 0; i < virutalMemorySize; i++) {
+	for(unsigned int i = 0; i < numFrames; i++) {
 		// compulsory miss
 		if(frames[i].time == -1) {
 			frames[i].page = address;
@@ -67,12 +66,12 @@ unsigned long long memoryManager::memoryAccess(unsigned long long address)
 }
 
 // intialize virutal memory map
-void memoryManager::initializeMemoryMap(unsigned int virutalMemorySize)
+void memoryManager::initializeMemoryMap()
 {
 	MemoryMap initFrame;
 
-	for(unsigned int i = 0; i < virutalMemorySize; i++) {
-		initFrame.page = -1;
+	for(unsigned int i = 0; i < numFrames; i++) {
+		initFrame.page = 0;
 		initFrame.time = -1;
 		frames.push_back(initFrame);
 	}
