@@ -16,53 +16,46 @@ int timer = 0;
 unsigned long long memoryManager::memoryAccess(unsigned long long address)
 {
 	// local variables
-	int lowest, lowestTime;	// tracks the frames that will be swapped 
+	int frameToSwap, frameToSwapTime;	// tracks the frames that will be swapped 
 
 	timer++;
 
 	if(frames.size() < numFrames) { initializeMemoryMap(); }
 
-	lowest = 0;
-	lowestTime = frames[0].time;
-
-	// display contents of memory map -- remove before submission
-	for(unsigned int i = 0; i < numFrames; i++) {
-		printf("%d ", frames[i].page);
-	}
-	printf("\n");
+	frameToSwap = 0;
+	frameToSwapTime = frames[0].time;
 
 	for(unsigned int i = 0; i < numFrames; i++) {
 		// compulsory miss
 		if(frames[i].time == -1) {
-			frames[i].page = address;
+			frames[i].page = address >> N;
 			frames[i].time = timer;
 
-			return(i);
+			return(frames[i].page);
 		}
 
 		// hit
-		if(frames[i].page == address) {
+		if(frames[i].page == address >> N) {
 			if(policy == LRU) {
 				frames[i].time = timer;
 			}
-			return(i);
+			return(frames[i].page);
 		}
 
 		// find space to swap if miss occurs
-		if(frames[i].time < lowestTime) {
-			lowest = i;
-			lowestTime = frames[i].time;
+		if(frames[i].time < frameToSwapTime) {
+			frameToSwap = i;
+			frameToSwapTime = frames[i].time;
 		}
 	}
 
 	// swap
-	// remove these two lines before submission
-	frames[lowest].page = address;
-	frames[lowest].time = timer;
+	frames[frameToSwap].page = address >> N;
+	frames[frameToSwap].time = timer;
 
-	swap(lowest, frames[lowest].page);
+	swap(frameToSwap, frames[frameToSwap].page);
 
-	return(lowest);
+	return(frames[frameToSwap].page);
 }
 
 // intialize virutal memory map
