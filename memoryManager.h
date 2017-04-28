@@ -11,7 +11,7 @@
 
 // data structure for memory map
 typedef struct {
-   unsigned int page;
+   unsigned long long page;
    int time;
 } MemoryMap;
 
@@ -20,5 +20,5 @@ public:
 	memoryManager(ReplacementPolicy p, unsigned int pS, unsigned int nF, unsigned int vA) : virtualMemoryManagerInterface(p, pS, nF, vA) {}
 	unsigned long long memoryAccess(unsigned long long address) override; //Function to implement memory mapping policy
 
-	void initializeMemoryMap(unsigned int addressLimit);
+	void initializeMemoryMap();
 };
